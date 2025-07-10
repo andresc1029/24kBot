@@ -8,7 +8,7 @@ from keep_alive import keep_alive
 # Lista de mascotas válidas
 PETS = ["A ofertar", "Bunny", "Dog", "Golden Lab", "Gamerant", "Grow a Garden", "Radio Times", "Black Bunny", "Cat", "Chicken", "Deer",
     "Orange Tabby", "Spotted Deer", "Pig", "Rooster", "Monkey", "Cow", "Polar Bear", "Sea Otter", "Turtle", "Silver Monkey",
-    "Brown Mouse", "Grey Mouse", "Caterpillar", "Giant Ant", "Praying Mantis", "Red Fox", "Red Giant Ant", "Snail", "Squirrel", "YouTube",
+    "Brown Mouse", "Grey Mouse", "Caterpillar", "Giant Ant", "Praying Mantis", "Red Fox", "Red Giant Ant", "Snail", "Squirrel",
     "Dragonfly", "Indiatimes", "Pocket Tactics", "Starfish", "Crab", "Seagull", "Flamingo", "Toucan", "Sea Turtle", "Orangutan",
     "Seal", "Ostrich", "Peacock", "Capybara", "Scarlet Macaw", "Mimic Octopus", "Meerkat", "Sand Snake", "Axolotl", "Hyacinth Macaw",
     "Fennec Fox", "Bee", "Honey Bee", "Bear Bee", "Petal Bee", "Queen Bee", "Wasp", "Tarantula Hawk", "Moth", "Butterfly", "Disco Bee",
@@ -23,7 +23,15 @@ TRADEANDO_ROLE_NAME = "Tradeando"
 # Diccionario con URLs de imagenes reales
 PET_IMAGES = {
     "Butterfly": "https://media.discordapp.net/attachments/1392970425461637151/1392971785389084954/Butterfly.png",
-     "T Rex": "https://media.discordapp.net/attachments/1392970425461637151/1392980131177304124/T-Rex.png",
+    "T Rex": "https://media.discordapp.net/attachments/1392970425461637151/1392980131177304124/T-Rex.png",
+    "Disco Bee": "https://media.discordapp.net/attachments/1392970425461637151/1392986046240915660/Disco-Bee.png",
+    "Cooked Owl": "https://media.discordapp.net/attachments/1392970425461637151/1392986045829742754/Cooked-Owl.png",
+    "Chicken Zombie":"https://media.discordapp.net/attachments/1392970425461637151/1392986045062185082/Chicken-Zombie.png",
+    "Raccoon":"https://media.discordapp.net/attachments/1392970425461637151/1392986044739227858/Raccoon.png",
+    "Queen Bee":"https://media.discordapp.net/attachments/1392970425461637151/1392986044366061718/Queen-Bee.png",
+    "Moon Cat":"https://media.discordapp.net/attachments/1392970425461637151/1392986043929858128/MoonCat.png",
+    "Mimic Octopus":"https://media.discordapp.net/attachments/1392970425461637151/1392986043615019220/Mimic-Octopus.png",
+    "Dragonfly":"https://media.discordapp.net/attachments/1392970425461637151/1392986043342655549/Dragonfly.png",
     # Puedes agregar más aquí...
 }
 
