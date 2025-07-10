@@ -23,7 +23,7 @@ TRADEANDO_ROLE_NAME = "Tradeando"
 # Diccionario con URLs de imagenes reales
 PET_IMAGES = {
     "Butterfly": "https://media.discordapp.net/attachments/1392970425461637151/1392971785389084954/Butterfly.png",
-    "T rex": "https://media.discordapp.net/attachments/1392970425461637151/1392980131177304124/T-Rex.png",
+    "T Rex": "https://media.discordapp.net/attachments/1392970425461637151/1392980131177304124/T-Rex.png",
     # Puedes agregar más aquí...
 }
 
