@@ -114,7 +114,7 @@ async def trade(interaction: discord.Interaction, quiero: str, doy: str):
                 color=discord.Color.green()
             )
             embed.set_thumbnail(url=get_pet_image_url(quiero))
-            embed.set_footer(text="Sistema de Trade | KevinBot")
+            embed.set_footer(text="Sistema de Trade | Team 24k")
             embed.timestamp = interaction.created_at
 
             await canal.send(embed=embed, view=view)
