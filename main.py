@@ -23,7 +23,7 @@ TRADES_FILE = "trades.json"
 TRADEANDO_ROLE_NAME = "Tradeando"
 
 # Base URL donde subes todas las imágenes
-PET_IMAGE_BASE_URL = "https://media.discordapp.net/attachments/1392970425461637151"
+PET_IMAGE_BASE_URL = https://discord.com/channels/1392646596948135966/1392970425461637151/1392971785443479603
 
 # Genera la URL de la imagen de una pet
 def get_pet_image_url(pet_name):
