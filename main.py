@@ -5,30 +5,30 @@ import os
 import json
 from keep_alive import keep_alive
 
-# Lista de mascotas válidas
-PETS = [
-    "Butterfly", "Dog", "Golden Lab", "Bunny", "Black Bunny", "Cat", "Chicken", "Deer",
+# Lista de mascotas válidas para autocompletado
+PETS = ["A ofertar", "Bunny", "Dog", "Golden Lab", "Gamerant", "Grow a Garden", "Radio Times", "Black Bunny", "Cat", "Chicken", "Deer",
     "Orange Tabby", "Spotted Deer", "Pig", "Rooster", "Monkey", "Cow", "Polar Bear", "Sea Otter", "Turtle", "Silver Monkey",
-    "Brown Mouse", "Grey Mouse", "Caterpillar", "Giant Ant", "Praying Mantis", "Red Fox", "Red Giant Ant", "Snail", "Squirrel", "YouTube",
+    "Brown Mouse", "Grey Mouse", "Caterpillar", "Giant Ant", "Praying Mantis", "Red Fox", "Red Giant Ant", "Snail", "Squirrel",
     "Dragonfly", "Indiatimes", "Pocket Tactics", "Starfish", "Crab", "Seagull", "Flamingo", "Toucan", "Sea Turtle", "Orangutan",
     "Seal", "Ostrich", "Peacock", "Capybara", "Scarlet Macaw", "Mimic Octopus", "Meerkat", "Sand Snake", "Axolotl", "Hyacinth Macaw",
-    "Fennec Fox", "Bee", "Honey Bee", "Bear Bee", "Petal Bee", "Queen Bee", "Wasp", "Tarantula Hawk", "Moth", "Disco Bee",
+    "Fennec Fox", "Bee", "Honey Bee", "Bear Bee", "Petal Bee", "Queen Bee", "Wasp", "Tarantula Hawk", "Moth", "Butterfly", "Disco Bee",
     "Hedgehog", "Kiwi", "Frog", "Mole", "Moon Cat", "Blood Kiwi", "Echo Frog", "Night Owl", "Raccoon", "Panda", "Blood Hedgehog",
     "Chicken Zombie", "Firefly", "Owl", "Golden Bee", "Cooked Owl", "Blood Owl", "T Rex", "Raptor", "Triceratops", "Stegosaurus",
-    "Pterodactyl", "Brontosaurus"
-]
+    "Pterodactyl", "Brontosaurus"]
 
 CANAL_TRADE_ID = 1392657923712352307
 TRADES_FILE = "trades.json"
 TRADEANDO_ROLE_NAME = "Tradeando"
 
-# Base URL donde subes todas las imágenes
-PET_IMAGE_BASE_URL = https://media.discordapp.net/attachments/1392970425461637151/1392971785389084954/Butterfly.png
+# Diccionario con URLs reales de las pets con imagen subida
+PET_IMAGES = {
+    "Butterfly": "https://media.discordapp.net/attachments/1392970425461637151/1392971785389084954/Butterfly.png",
+    # Puedes seguir agregando más aquí...
+}
 
-# Genera la URL de la imagen de una pet
+# Retorna la URL de la imagen, o un placeholder si no está disponible
 def get_pet_image_url(pet_name):
-    safe_name = pet_name.replace(" ", "%20")
-    return f"{PET_IMAGE_BASE_URL}/{safe_name}.png"
+    return PET_IMAGES.get(pet_name, "https://via.placeholder.com/150?text=Sin+imagen")
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -124,6 +124,7 @@ async def trade(interaction: discord.Interaction, quiero: str, doy: str):
             await interaction.response.send_message("✅ ¡Match encontrado! Canal creado.")
             return
 
+    # Si no hay match todavía
     embed = discord.Embed(
         title="✅ Petición guardada",
         description=f"🔁 Quieres `{quiero}`, das `{doy}`.\n⌛ Esperando coincidencia...",
@@ -172,6 +173,12 @@ class ConfirmTradeView(discord.ui.View):
         await self.channel.delete()
 
 keep_alive()
+
+token = os.getenv("TOKEN")
+if not token:
+    raise ValueError("❌ TOKEN no encontrado.")
+bot.run(token)
+
 
 token = os.getenv("TOKEN")
 if not token:
