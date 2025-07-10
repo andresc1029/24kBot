@@ -5,10 +5,10 @@ import os
 import json
 from keep_alive import keep_alive
 
-# Lista de mascotas válidas para autocompletado
+# Lista de mascotas válidas
 PETS = ["A ofertar", "Bunny", "Dog", "Golden Lab", "Gamerant", "Grow a Garden", "Radio Times", "Black Bunny", "Cat", "Chicken", "Deer",
     "Orange Tabby", "Spotted Deer", "Pig", "Rooster", "Monkey", "Cow", "Polar Bear", "Sea Otter", "Turtle", "Silver Monkey",
-    "Brown Mouse", "Grey Mouse", "Caterpillar", "Giant Ant", "Praying Mantis", "Red Fox", "Red Giant Ant", "Snail", "Squirrel",
+    "Brown Mouse", "Grey Mouse", "Caterpillar", "Giant Ant", "Praying Mantis", "Red Fox", "Red Giant Ant", "Snail", "Squirrel", "YouTube",
     "Dragonfly", "Indiatimes", "Pocket Tactics", "Starfish", "Crab", "Seagull", "Flamingo", "Toucan", "Sea Turtle", "Orangutan",
     "Seal", "Ostrich", "Peacock", "Capybara", "Scarlet Macaw", "Mimic Octopus", "Meerkat", "Sand Snake", "Axolotl", "Hyacinth Macaw",
     "Fennec Fox", "Bee", "Honey Bee", "Bear Bee", "Petal Bee", "Queen Bee", "Wasp", "Tarantula Hawk", "Moth", "Butterfly", "Disco Bee",
@@ -20,13 +20,12 @@ CANAL_TRADE_ID = 1392657923712352307
 TRADES_FILE = "trades.json"
 TRADEANDO_ROLE_NAME = "Tradeando"
 
-# Diccionario con URLs reales de las pets con imagen subida
+# Diccionario con URLs de imagenes reales
 PET_IMAGES = {
     "Butterfly": "https://media.discordapp.net/attachments/1392970425461637151/1392971785389084954/Butterfly.png",
-    # Puedes seguir agregando más aquí...
+    # Puedes agregar más aquí...
 }
 
-# Retorna la URL de la imagen, o un placeholder si no está disponible
 def get_pet_image_url(pet_name):
     return PET_IMAGES.get(pet_name, "https://via.placeholder.com/150?text=Sin+imagen")
 
@@ -104,17 +103,19 @@ async def trade(interaction: discord.Interaction, quiero: str, doy: str):
             view = ConfirmTradeView(autor.id, user_id, canal, role_tradeando)
 
             embed = discord.Embed(
-                title="🎉 ¡Match hecho!",
+                title="🎉 ¡Match Detectado!",
                 description=(
-                    f"🔁 <@{autor.id}> quiere `{quiero}` y da `{doy}`\n"
-                    f"🔁 <@{otro_usuario.id}> quiere `{doy}` y da `{quiero}`\n"
-                    f"👮 *Solo los admins pueden confirmar si se concretó el trade.*"
+                    f"👤 {autor.mention} quiere 🧸 **{quiero}**\n"
+                    f"🎁 Ofrece: **{doy}**\n\n"
+                    f"👤 {otro_usuario.mention} quiere 🧸 **{doy}**\n"
+                    f"🎁 Ofrece: **{quiero}**\n\n"
+                    f"🔒 *Un admin debe confirmar usando los botones de abajo.*"
                 ),
                 color=discord.Color.green()
             )
-
-            image_url = get_pet_image_url(quiero)
-            embed.set_thumbnail(url=image_url)
+            embed.set_thumbnail(url=get_pet_image_url(quiero))
+            embed.set_footer(text="Sistema de Trade | KevinBot")
+            embed.timestamp = interaction.created_at
 
             await canal.send(embed=embed, view=view)
 
@@ -124,15 +125,15 @@ async def trade(interaction: discord.Interaction, quiero: str, doy: str):
             await interaction.response.send_message("✅ ¡Match encontrado! Canal creado.")
             return
 
-    # Si no hay match todavía
+    # Si no hay coincidencia aún
     embed = discord.Embed(
-        title="✅ Petición guardada",
-        description=f"🔁 Quieres `{quiero}`, das `{doy}`.\n⌛ Esperando coincidencia...",
-        color=discord.Color.blue()
+        title="📥 Petición guardada",
+        description=f"🔁 Quieres 🧸 **{quiero}**, das 🎁 **{doy}**\n⌛ Esperando coincidencia...",
+        color=discord.Color.blurple()
     )
-
-    image_url = get_pet_image_url(quiero)
-    embed.set_thumbnail(url=image_url)
+    embed.set_thumbnail(url=get_pet_image_url(quiero))
+    embed.set_footer(text="Sistema de Trade | KevinBot")
+    embed.timestamp = interaction.created_at
 
     await interaction.response.send_message(embed=embed)
 
@@ -173,12 +174,6 @@ class ConfirmTradeView(discord.ui.View):
         await self.channel.delete()
 
 keep_alive()
-
-token = os.getenv("TOKEN")
-if not token:
-    raise ValueError("❌ TOKEN no encontrado.")
-bot.run(token)
-
 
 token = os.getenv("TOKEN")
 if not token:
